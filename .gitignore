@@ -1,0 +1,25 @@
+# Dependencies and build
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Secrets and local state
+.env
+.env.local
+memory/*.json
+
+# Foundry (skills/krumpkraft-agent)
+out/
+broadcast/
+cache/
+lib/
+
+# Dashboard
+dashboard/node_modules
+dashboard/dist
+
+# Minecraft mod build and server runtime
+skills/krumpkraft-agent/minecraft-mod/.gradle/
+skills/krumpkraft-agent/minecraft-mod/build/
+skills/krumpkraft-agent/minecraft-mod/server/

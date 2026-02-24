@@ -1,0 +1,14 @@
+# KrumpKraft Mod - API and sync
+api:
+  url: "http://localhost:8081"
+  # !pay and relayer can take 30-60s; increase if you see "request timed out"
+  timeout-ms: 60000
+  sync-interval-ms: 5000
+
+# World and markers
+markers:
+  enabled: true
+  spawn-world: "world"
+  default-y: 64
+  # Armor stand nametag: "Name (role)"
+  show-role: true

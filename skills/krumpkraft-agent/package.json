@@ -1,0 +1,50 @@
+{
+  "name": "openclaw-skill-krumpkraft-agent",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "example:two-agents": "tsx examples/two-agents-x402-native.ts",
+    "start:swarm": "tsx examples/run-swarm.ts",
+    "api": "node dist/server/APIServer.js",
+    "dashboard": "cd dashboard && npm run dev",
+    "dashboard:build": "cd dashboard && npm run build",
+    "deploy:contract": "forge script script/Deploy.s.sol --rpc-url ${STORY_RPC_URL:-https://aeneid.storyrpc.io} --broadcast --verify --verifier blockscout --verifier-url https://aeneid.storyscan.io/api/ --with-gas-price 10gwei"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.0",
+    "ethers": "^6.9.0",
+    "express": "^4.19.0",
+    "mineflayer": "^4.35.0",
+    "mineflayer-pathfinder": "^2.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "peerDependencies": {
+    "openclaw": "^2026.2.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "krump",
+    "dance",
+    "usdc",
+    "evvm",
+    "story",
+    "blockchain",
+    "x402",
+    "agentic-commerce"
+  ]
+}

@@ -1,0 +1,8 @@
+name: KrumpKraftMod
+version: ${version}
+main: io.krumpkraft.mod.KrumpKraftPlugin
+description: KrumpKraft agent frontend - chat commands and agent markers (polls KrumpKraft API)
+author: KrumpKraft
+api-version: '1.21'
+libraries:
+  - com.google.code.gson:gson:2.10.1
