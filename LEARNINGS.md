@@ -14,7 +14,7 @@ A running log of what we learned, what worked, and what didn’t while building 
 - **Test run before mainnet** – Deploy to a local fork first: `anvil --fork-url https://aeneid.storyrpc.io`, then `forge script ... --rpc-url http://127.0.0.1:8545 --broadcast`. No real gas cost; confirms constructor and flow.
 - **Blockscout verification** – Story Aeneid explorer is at https://aeneid.storyscan.io/. Verification uses Blockscout: `--verifier blockscout --verifier-url https://aeneid.storyscan.io/api/`. Add `/api/` to the explorer URL (per Story docs).
 - **Private key format** – `ADMIN_PRIVATE_KEY` in `.env` should be **with** the `0x` prefix, then 64 hex characters (e.g. `ADMIN_PRIVATE_KEY=0x...`).
-- **`.env` location** – The deploy command must be run from `skills/krumpkraft-agent/` and that directory must contain `.env`. If the command is run from elsewhere or `.env` is missing, you get “No such file or directory: .env”.
+- **`.env` location** – The deploy command must be run from the repo root and that directory must contain `.env`. If the command is run from elsewhere or `.env` is missing, you get “No such file or directory: .env”.
 - **Gas price** – On Aeneid, 10 Gwei can be slow or stuck. 15–20 Gwei is a reasonable next step; 50 Gwei for faster inclusion. Cost scales linearly (e.g. ~0.025 $IP at 10 Gwei → ~0.125 $IP at 50 Gwei for this deploy).
 
 ### EVVM positioning
@@ -47,14 +47,14 @@ A running log of what we learned, what worked, and what didn’t while building 
 - **Deploy to Aeneid never confirmed in-session** – Multiple runs of `forge script ... --broadcast --verify` were either backgrounded due to timeout or failed before we saw “ONCHAIN EXECUTION COMPLETE”. So we never confirmed a live deployment or verification in the agent run.
 - **“already known”** – After a first deploy attempt, a second run (same key) failed with “Failed to send transaction after 4 attempts Err(server returned an error response: error code -32000: already known)”. The node already had that tx (same nonce); re-broadcasting the same tx was rejected.
 - **Verification failed: “Address is not a smart-contract”** – `forge verify-contract` reported the address had no code. That was consistent with `cast code <address> --rpc-url https://aeneid.storyrpc.io` returning `0x`, meaning either the deploy tx never landed or we were checking before it was mined.
-- **`.env` not found** – When the deploy was run from a different context, the error was “No such file or directory: .env”. Fix: ensure `.env` exists in `skills/krumpkraft-agent/` and the command is run from that directory (or source the correct path).
+- **`.env` not found** – When the deploy was run from a different context, the error was “No such file or directory: .env”. Fix: ensure `.env` exists in the repo root and the command is run from that directory (or source the correct path).
 - **50 Gwei run** – A requested run with `--with-gas-price 50gwei` failed to spawn (“Aborted”). No change was made to the repo; the user can run the same command locally.
 
 ---
 
 ## Recommended next steps
 
-1. **Deploy from your machine** – From `skills/krumpkraft-agent/`: `set -a && . .env && set +a`, then run the full `forge script` command (with `--with-gas-price 50gwei` if desired). Let it run to completion so you see broadcast and verify result.
+1. **Deploy from your machine** – From the repo root: `set -a && . .env && set +a`, then run the full `forge script` command (with `--with-gas-price 50gwei` if desired). Let it run to completion so you see broadcast and verify result.
 2. **If deploy succeeds but verify fails** – Run `forge verify-contract <DEPLOYED_ADDRESS> contracts/KrumpKraftMod.sol:KrumpKraftMod --verifier blockscout --verifier-url https://aeneid.storyscan.io/api/ --constructor-args $(cast abi-encode "constructor(address)" $USDC_K_ADDRESS) --chain 1315 --rpc-url https://aeneid.storyrpc.io`.
 3. **Optional: 50 Gwei in npm script** – In `package.json`, change the `deploy:contract` script to use `--with-gas-price 50gwei` if you want that as the default.
 4. **Wire swarm to contract** – Once KrumpKraftMod is deployed and verified, add `KRUMP_KRAFT_MOD_ADDRESS` to `.env` and implement sync (e.g. registerAgent on startup, throttled updatePosition from bot position).

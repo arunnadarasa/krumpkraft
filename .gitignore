@@ -9,7 +9,7 @@ dist/
 .env.local
 memory/*.json
 
-# Foundry (skills/krumpkraft-agent)
+# Foundry
 out/
 broadcast/
 cache/
@@ -20,6 +20,6 @@ dashboard/node_modules
 dashboard/dist
 
 # Minecraft mod build and server runtime
-skills/krumpkraft-agent/minecraft-mod/.gradle/
-skills/krumpkraft-agent/minecraft-mod/build/
-skills/krumpkraft-agent/minecraft-mod/server/
+minecraft-mod/.gradle/
+minecraft-mod/build/
+minecraft-mod/server/
