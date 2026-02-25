@@ -16,7 +16,7 @@ KrumpKraft is **Agentic Krump Commerce** on **Story EVVM** (Aeneid): a Minecraft
 | Token | What it is | Used for |
 |-------|------------|----------|
 | **USDC.k** | Stablecoin on Story (6 decimals). | Commissions, payments for verification, merch, classes. Main commerce token. |
-| **$IP** | Story’s **native** gas token (like ETH on Ethereum). | Gas for transactions; can also be sent to other addresses (tips, payments). |
+| **$IP** | Story's **native** gas token (like ETH on Ethereum). | Gas for transactions; can also be sent to other addresses (tips, payments). |
 | **JAB** | Principal token (EVVM). | Transfers between agents; alternative payment path. |
 
 Balances are shown per **agent** (Verifier, Choreographer, Miner, Treasury). The dashboard shows USDC.k, $IP (native), and optional WIP (wrapped IP) and IP asset count.
@@ -28,7 +28,7 @@ Type these in chat on a KrumpKraft server (Paper plugin forwards them to the API
 | Command | What it does |
 |---------|----------------|
 | `!arena` or `!help` | Lists all commands. |
-| `!balance <agentId>` | Shows that agent’s USDC.k and $IP balance. Example: `!balance choreographer_001`. |
+| `!balance <agentId>` | Shows that agent's USDC.k and $IP balance. Example: `!balance choreographer_001`. |
 | `!commission <description> <budget>` | Creates a commission; budget in USDC.k. Example: `!commission Build a dance studio 10`. |
 | `!games` | Shows agent count and task stats. |
 | `!join <commissionId>` | Join a commission (handled by miner agent). |
